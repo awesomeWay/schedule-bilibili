@@ -80,9 +80,9 @@ class coinAdd extends base {
       console.info('已经为' + videoTitle + '投过币了');
       return false;
     }
-
+    console.log(params)
     const result = await this.request.post(coinAddURL, qs.stringify(params));
-    if (+result.code === 0) {
+    if (result.code === 0) {
       console.info('----- [投币成功] -----');
       return false;
     }
