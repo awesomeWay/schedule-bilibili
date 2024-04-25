@@ -59,7 +59,7 @@ class Task {
   //   );
   // }
 
-  async function send(text){
+  async send(text){
     const timestamp = Math.floor(Date.now() / 1000);
     const algorithm = 'sha256';
     const sign = getSign(timestamp, process.env.SECRET,algorithm);
