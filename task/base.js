@@ -108,7 +108,7 @@ class Task {
     }
     let title = '未能获取到标题';
     console.log(bvid)
-    const result = await request.get(videoViewURL,params);
+    const result = await this.request.get(videoViewURL,params);
     console.log(result)
     if (result.code === 0) {
       const owner = this._.get(result, 'data.owner.name');
