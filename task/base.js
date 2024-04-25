@@ -2,6 +2,7 @@ const _ = require('lodash');
 const fs = require('fs');
 const crypto = require('crypto')
 const axios = require('axios')
+const getSign = require('./../data/crypto.js')
 const Request = require('./../api/base');
 const notice = require('./../api/notice');
 const request = new Request();
@@ -61,7 +62,7 @@ class Task {
   async function send(text){
     const timestamp = Math.floor(Date.now() / 1000);
     const algorithm = 'sha256';
-    const sign = this.getSign(timestamp, process.env.SECRET,algorithm);
+    const sign = getSign(timestamp, process.env.SECRET,algorithm);
     await axios.post(
         process.env.FEISHU_ROBOT,
         {
@@ -73,16 +74,6 @@ class Task {
             }
       }
     )
-  }
-
-  function getSign(timestamp,secret,algorithm){
-      // timestamp + "\n" + 密钥
-      const msg = `${timestamp}\n${secret}`
-      const actual = crypto
-                      .createHmac(algorithm, msg)
-                      .digest();
-      const sign = Buffer.from(actual, 'utf-8').toString('base64');
-      return sign
   }
 
   /**
