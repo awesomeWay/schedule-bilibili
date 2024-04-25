@@ -105,8 +105,9 @@ class Task {
       'https://api.bilibili.com/x/web-interface/view?bvid=' + bvid;
 
     let title = '未能获取到标题';
+    console.log(bvid)
     const result = await request.get(videoViewURL);
-    if (+result.code === 0) {
+    if (result.code === 0) {
       const owner = this._.get(result, 'data.owner.name');
       return owner + ' ' + result.data.title;
     }
