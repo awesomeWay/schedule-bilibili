@@ -102,11 +102,14 @@ class Task {
 
   async getVideoTitle(bvid) {
     const videoViewURL =
-      'https://api.bilibili.com/x/web-interface/view?bvid=' + bvid;
-
+      'https://api.bilibili.com/x/web-interface/view';
+    const params = {
+      bvid
+    }
     let title = '未能获取到标题';
     console.log(bvid)
-    const result = await request.get(videoViewURL);
+    const result = await request.get(videoViewURL,params);
+    console.log(result)
     if (result.code === 0) {
       const owner = this._.get(result, 'data.owner.name');
       return owner + ' ' + result.data.title;
