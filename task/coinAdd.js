@@ -71,7 +71,7 @@ class coinAdd extends base {
       multiply,
       select_like: selectLike,
       cross_domain: true,
-      csrf: user.jct,
+      csrf: await this.getCookie('bili_jct'),
     };
 
     const videoTitle = await this.getVideoTitle(bvid);
