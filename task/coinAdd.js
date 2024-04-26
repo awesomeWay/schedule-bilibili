@@ -34,7 +34,7 @@ class coinAdd extends base {
 
       if (!coinFlag) {
         useCoin++;
-        break;
+        continue;
       }
 
       // 程序暂停 5s
